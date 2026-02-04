@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse-Z Production | Professional Cinema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --eclipse-orange: #ff8c00;
+            --bg-dark: #010103;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        /* --- الخلفية المتحركة --- */
+        .background-layer {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        .eclipse-container {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px; height: 260px;
+        }
+
+        .sun {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px var(--eclipse-orange);
+        }
+
+        .moon {
+            position: absolute;
+            width: 105%; height: 105%;
+            background: var(--bg-dark);
+            border-radius: 50%;
+            top: -2.5%; left: -160%;
+            animation: moveEclipse 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveEclipse {
+            0% { left: -160%; }
+            50% { left: -2.5%; }
+            100% { left: 160%; }
+        }
+
+        /* --- المحتوى الرئيسي --- */
+        .main-content {
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* تأثير اهتزاز العنوان */
+        .header-section {
+            margin-bottom: 40px;
+            animation: cameraShake 4s infinite;
+        }
+
+        @keyframes cameraShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(1px, 1px) rotate(0.1deg); }
+            50% { transform: translate(-1px, -1px) rotate(-0.1deg); }
+            75% { transform: translate(1px, -1px) rotate(0.1deg); }
+        }
+
+        .neon-title-black {
+            font-size: 2.2rem;
+            color: #000;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin: 10px 0;
+            text-shadow: 
+                -1.5px -1.5px 0 var(--neon-blue),  
+                 1.5px -1.5px 0 var(--neon-blue),
+                -1.5px  1.5px 0 var(--neon-blue),
+                 1.5px  1.5px 0 var(--neon-blue),
+                 0 0 20px rgba(0, 242, 255, 0.6);
+        }
+
+        /* الأيقونات العلوية */
+        .production-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.5rem;
+            color: #000;
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+        }
+
+        /* --- تصميم الأزرار بوضوح عالٍ --- */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .btn-neon {
+            display: flex;
+            align-items: center;
+            padding: 14px 25px;
+            /* خلفية زجاجية داكنة للوضوح */
+            background: rgba(0, 0, 0, 0.85); 
+            border: 2px solid var(--neon-blue);
+            border-radius: 12px;
+            color: #fff; /* نص أبيض لضمان الوضوح */
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        /* تأثيرات خاصة عند تمرير الماوس لكل منصة */
+        .btn-neon:hover {
+            transform: scale(1.05) translateY(-5px);
+            color: #000;
+            background: var(--neon-blue);
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        .btn-neon i {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+            color: var(--neon-blue); /* لون الأيقونة أزرق نيون دائماً */
+            transition: 0.3s;
+        }
+
+        .btn-neon:hover i {
+            color: #000;
+        }
+
+        /* جزيئات فضائية */
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-layer" id="space">
+        <div class="eclipse-container">
+            <div class="sun"></div>
+            <div class="moon"></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header-section">
+            <div class="production-icons">
+                <i class="fas fa-video"></i>
+                <i class="fas fa-bolt"></i>
+                <i class="fas fa-music"></i>
+            </div>
+            <h1 class="neon-title-black">Eclipse-z production</h1>
+        </div>
+
+        <nav class="links-wrapper">
+            <a href="https://www.instagram.com/eclipse_z_production" class="btn-neon" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://youtube.com/@eclipse-zproduction" class="btn-neon" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube Channel</span>
+            </a>
+            <a href="https://www.facebook.com/share/1RWRhDnSHK/" class="btn-neon" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook Page</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        const space = document.getElementById('space');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 'px';
+            star.style.width = size; star.style.height = size;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            space.appendChild(star);
+        }
+    </script>
+</body>
+</html>
